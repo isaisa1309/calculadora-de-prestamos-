@@ -1,32 +1,31 @@
-let monto = document.querySelector("#primerNumero");
+let capital = document.querySelector("#primerNumero");
 let tasa = document.querySelector("#segundoNumero");
-let meses = document.querySelector("#tercerNumero");
+let tiempo = document.querySelector("#tercerNumero");
 
 let resultado = document.querySelector("#resultado");
 
 function sumar() {
 
-let m = parseFloat(monto.value);
+let c = parseFloat(capital.value);
 let t = parseFloat(tasa.value);
-let n = parseFloat(meses.value);
+let n = parseFloat(tiempo.value);
 
-if (isNaN(m) || isNaN(t) || isNaN(n)) {
+if (isNaN(c) || isNaN(t) || isNaN(n)) {
 resultado.classList.remove("d-none");
 resultado.textContent = "Complete todos los campos";
 return;
 }
 
-let interesMensual = t / 100 / 12;
+let tasaDecimal = t / 100;
 
+let interes = c * tasaDecimal * n;
 
-let cuota = m * interesMensual * Math.pow(1 + interesMensual, n) /
-(Math.pow(1 + interesMensual, n) - 1);
-
+let total = c + interes;
 
 resultado.classList.remove("d-none");
 resultado.innerHTML = `
-<strong>Cuota mensual:</strong> RD$ ${cuota.toFixed(2)}
+<strong>Interés:</strong> RD$ ${interes.toFixed(2)} <br>
+<strong>Total a pagar:</strong> RD$ ${total.toFixed(2)}
 `;
 
 }
-
